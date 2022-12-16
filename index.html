@@ -4,12 +4,14 @@
         <meta charset="utf-8">
         <title>Hello world!</title>
     </head>
+    
     <body>
-        <?php
-            $filename = fopen('duty_cycle', 'r'); 
-            $file = fread($filename, filesize('duty_cycle'));
-            echo $file; 
-            fclose($filename);
-        ?>
+        <form action="/tutorial/action.html" method="post">
+            <fieldset style="background: #f6f8ff; border: 2px solid #4238ca;">
+              <legend>Speed Control</legend>
+              <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />          
+              <button type="submit">Submit</button>
+            </fieldset>          
+          </form>
     </body>
 </html>

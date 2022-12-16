@@ -1,4 +1,5 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from io import BytesIO
 
 def readSpeed() :
     # dir = "/sys/class/pwm/pwmchip8/pwm0/duty_cycle"
