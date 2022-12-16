@@ -5,6 +5,11 @@
         <title>Hello world!</title>
     </head>
     <body>
-        <h1>Index page!</h1>
+        <?php
+            $filename = fopen('duty_cycle', 'r'); 
+            $file = fread($filename, filesize('duty_cycle'));
+            echo $file; 
+            fclose($filename);
+        ?>
     </body>
 </html>
