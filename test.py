@@ -6,7 +6,7 @@ def readSpeed() :
     file = open(dir, "r")
     duty_cycle = file.readlines()[0]
     file.close()
-    return str(duty_cycle[0])
+    return str(duty_cycle)
 
 class Serv(BaseHTTPRequestHandler):
 
