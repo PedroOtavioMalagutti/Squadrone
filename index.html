@@ -5,13 +5,20 @@
         <title>Hello world!</title>
     </head>
     <body>
-      <object data="duty_cycle"></object>
+      
       <form method="post">
         <fieldset style="background: #f6f8ff; border: 2px solid #4238ca;">
           <legend>Speed Control</legend>
           <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />          
           <button type="submit">Submit</button>
+
         </fieldset>          
       </form>
+
+      <center>
+      Actual Speed: <br />
+
+      <object name="info" data="duty_cycle" style="border:1px solid #000;">
+      </object>
     </body>
 </html>
