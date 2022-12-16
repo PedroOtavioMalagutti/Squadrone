@@ -1,6 +1,12 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from io import BytesIO
 
+def readForms(body, word) :
+    bd = body.decode('utf-8')
+    index = bd.find(word) + len(word) + 1
+    speedStr = bd[index:len(bd)]
+    return int(speedStr)
+
 class Serv(BaseHTTPRequestHandler):
 
     def do_GET(self):
@@ -24,7 +30,10 @@ class Serv(BaseHTTPRequestHandler):
         response = BytesIO()
         response.write(b'This is POST request. ')
         response.write(b'Received: ')
-        response.write(body)
+        response.write(body)   
+
+        print(readForms(body, 'speed'))
+
         self.wfile.write(response.getvalue())
 
 def main() :
