@@ -1,7 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import traceback
 
-def __read_forms(body, word) :
+def read_forms(body, word) :
     """Reads a attribute from a forms structured data"""
     bd = body.decode('utf-8')
     index = bd.find(word) + len(word) + 1
@@ -15,7 +15,7 @@ def __read_forms(body, word) :
 
     return str(speedStr)
 
-def __write_duty_cycle(dutyCycle, DBG) :    
+def write_duty_cycle(dutyCycle, DBG) :    
     """Writes a value to Duty Cycle PWM control file"""
     if DBG : dir = './duty_cycle'
     else : dir = "/sys/class/pwm/pwmchip8/pwm0/duty_cycle"
@@ -35,10 +35,10 @@ def update_index(file, target, info) :
 
 def post_response(data, index, DGB = 0) :
     """Main function called method of do_POST server class method"""
-    speed_input = __read_forms(data, 'speed') 
-    __write_duty_cycle(speed_input, DGB)
+    speed_input = read_forms(data, 'speed') 
+    write_duty_cycle(speed_input, DGB)
 
     # Updates the index base file         
     new_index = update_index(index, 'Actual Speed:', speed_input)
-
+    # Then returns the modified webpage
     return new_index, speed_input
