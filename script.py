@@ -39,6 +39,6 @@ def post_response(data, index, DGB = 0) :
     write_duty_cycle(speed_input, DGB)
 
     # Updates the index base file         
-    new_index = update_index(index, 'Actual Speed:', speed_input)
+    new_index = update_index(index, 'Speed: ', speed_input)
     # Then returns the modified webpage
     return new_index, speed_input

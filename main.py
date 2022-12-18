@@ -60,7 +60,7 @@ class Server(BaseHTTPRequestHandler):
         # If error in method, keep last valid speed
         except Exception as e :
             print(e)
-            index = update_index(index, 'Actual Speed:', LAST_RPM)
+            index = update_index(index, 'Speed: ', LAST_RPM)
 
         self.wfile.write(bytes(index, 'utf-8'))
 
