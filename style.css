@@ -122,3 +122,64 @@ input, button {
     background-color: #f8f8f2;
     font-size: small;
 }
+body {
+    background-color: lightblue;
+    padding: 5%;
+    font-family: sans-serif;
+}
+
+h1 {
+    color: navy;
+    font-size: 3rem;
+}
+
+fieldset {
+    font-size: 2rem;
+    font-weight: bolder;
+    border-radius: 1em;
+    width: 40%;
+}
+
+input, button {
+    font-size: 1.5rem;
+    width: 75%;
+    border-radius: .2em;
+}
+
+.tg  {
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 40%;
+    border-radius: 1em;
+}
+
+.tg td {
+    border-color:black;
+    border-style:solid;
+    border-width:3px;
+    font-family:sans-serif;
+    font-size:1.5rem;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+}
+
+.tg th {
+    border-color:black;
+    border-style:solid;
+    border-width:3px;
+    font-family:sans-serif;
+    font-size:1.5rem;
+    font-weight:bolder;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal; 
+}
+
+.tg .tg-y5zp {
+    background-color:#ffffff;
+    border-color:navy;
+    text-align:left;
+    vertical-align:top;
+    text-align: center;
+}
