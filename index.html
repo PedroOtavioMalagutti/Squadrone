@@ -15,18 +15,31 @@
     <h1>Squadrone BLDC Controller</h1>
   </div>
 
-  <div class="gauge">
-    <canvas id="gauge">
+  <div class="gauge-div">
+    <canvas id="gauge" class="gauge1" height="300px" width="500px">
   </div>
 
-  <form method="post">
-    <fieldset style="background: #f6f8ff; border: 2px solid #4238ca;">
-      <legend>Speed Control</legend>
-      <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />
-      <button type="submit">Submit</button>
+  <!-- <div class="speed">    
+    <form method="post">
+      <fieldset class="config field1"">
+        <h2>Speed Control</h2>
+        <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />
+        <button type="submit">Submit</button>
+      </fieldset>
+    </form>
+  </div> -->
 
-    </fieldset>
-  </form>
+  <div class="slider">
+    <div class="knob"></div>
+  </div>
+
+  <div class="config field1">    
+    <form method="post">
+        <h2>Motor configuration</h2>
+        <input type="text" name="kv" placeholder="Velocity constant KV ()"><br /><br />
+        <button type="submit">Submit</button>
+    </form>
+  </div>
 
 
   <script>

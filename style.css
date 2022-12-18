@@ -2,6 +2,10 @@ body {
     background-image: url('./assets/blue_background.jpg');
     /* background-repeat: no-repeat; */
     background-size: cover;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 100vh;
 }
 
 h1 {
@@ -22,12 +26,99 @@ h1 {
     text-align: center;
 }
 
-.gauge {
+.gauge-div {
+    height: auto;
+    width: 100%;
+    margin-left: auto;
+    text-align: center;
+}
+
+.slider, .knob{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    margin: auto;
+}
+
+.slider::after {
+    background: linear-gradient(0deg, purple 0%, black 100%);
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    box-shadow: 0px -20px 20px #757575,
+                0px 20px 35px #111111,
+                inset 0px 5px 6px #979797, 
+                inset 0px -5px 6px #242424;
+}
+
+.slider::before, .knob{
+    width: 10em;
+    height: 10em;
+    position: relative;
+}
+
+.knob::before, 
+.knob::after,
+.slider::after{
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.knob::after {
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    box-shadow: 0px 0px 10px purple;
+}
+
+.knob::before {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #fff;
+    width: 130%;
+    height: 130%;
+    background: black;
+    box-shadow: 0px 0px 10px purple,
+                inset 0px 0px 10px purple;
+}
+/* h1 {
+    color: navy;
+    font-size: 3rem;
+} */
+
+fieldset {
+    font-size: 2rem;
+    font-weight: bolder;
+    border-radius: 1em;
+    width: 40%;
+}
+
+input, button {
+    font-size: 1.5rem;
+    width: 75%;
+    border-radius: .2em;
+}
+
+.config {
     /* background-color: #f8f8f2; */
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-    /* border: 3px solid purple; */
-    padding: 10px;
+    border: 3px solid purple;
+    /* padding: 10px; */
     text-align: center;
+    /* background-color: lightblue; */
+    padding: 5%;
+}
+
+.field1 {
+    background-color: #f8f8f2;
+    font-size: small;
 }
