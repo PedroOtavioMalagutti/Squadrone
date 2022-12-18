@@ -5,7 +5,7 @@ import sys
 import signal
 
 LAST_RPM = '0000'
-DBG = False
+DBG = True
 
 # Our signal handler
 def signal_handler(signum, frame):  
@@ -73,6 +73,7 @@ def main() :
 
     # Enter in DEBUG mode from terminal command line
     # ...\Squadrone> python main.py True 
+
     if len(sys.argv) == 1 :
         DBG = False
     else :
@@ -84,8 +85,10 @@ def main() :
     duty_cycle = "0000"
     enable = "1"
 
+    print(f"Starting Squadrone: export = {export}, period = {period}, duty_cycle = {duty_cycle}, enable = {enable}, debug = {DBG}")
+
     # Starts PWM Service
-    if not DBG :
+    if not DBG:
         with open("/sys/class/pwm/pwmchip8/export", "w") as file1:
             file1.writelines([export])
         with open("/sys/class/pwm/pwmchip8/pwm0/period", "w") as file2:
@@ -98,6 +101,7 @@ def main() :
     # Creates server
     if DBG :
         httpd = HTTPServer(('localhost', 8080), Server)
+        print("Server started at http://localhost:8080")
     else :
         # TODO: EXTRACT OWN IP AUTOMATICALLY
         httpd = HTTPServer(('192.168.0.196', 8080), Server)

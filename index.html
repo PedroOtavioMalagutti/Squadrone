@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>PWM Control!!!</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-      
-      <form method="post">
-        <fieldset style="background: #f6f8ff; border: 2px solid #4238ca;">
-          <legend>Speed Control</legend>
-          <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />          
-          <button type="submit">Submit</button>
 
-        </fieldset>          
-      </form>
+<head>
+  <meta charset="utf-8">
+  <title>Squadrone BLDC Controller</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- <script src="https://d3js.org/d3.v6.min.js"></script> -->
+  <script src="./gauge.min.js"></script>
+  <script src="./index.js"></script>
+</head>
 
-      <center>
-      <h1>
-        Actual Speed: <br />
-      </h1>      
-    </body>
+<body>
+  <div class="header">
+    <h1>Squadrone BLDC Controller</h1>
+  </div>
+
+  <div class="gauge">
+    <canvas id="gauge">
+  </div>
+
+  <form method="post">
+    <fieldset style="background: #f6f8ff; border: 2px solid #4238ca;">
+      <legend>Speed Control</legend>
+      <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />
+      <button type="submit">Submit</button>
+
+    </fieldset>
+  </form>
+
+
+  <script>
+    gauge = setGauge()
+    updateGauge(gauge)
+  </script>
+</body>
+
 </html>

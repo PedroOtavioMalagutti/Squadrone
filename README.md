@@ -34,7 +34,6 @@ Desenvolvimento do controle de um motor de drone a partir de uma Colibri VF50, a
 
 Primeiramente é necessário conectar o sistema embarcado (target) e o computador de desenvolvimento (host) na mesma rede LAN, utilizando o protocolo ssh. Segue na imagem abaixo a montagem do sistema:
 
-
 Com o host conectado no wi-fi, abra um terminal e digite o seguinte comando:
 
 ``` ip -a  ```
@@ -72,7 +71,7 @@ Desenvolvimento do controle de um motor de drone a partir de uma Colibri VF50, a
 
 Primeiramente é necessário conectar o sistema embarcado (target) e o computador de desenvolvimento (host) na mesma rede LAN, utilizando o protocolo ssh. Segue na imagem abaixo a montagem do sistema:
 
-<img src="/imagens/sistema.jpeg" alt="" title="Optional title">
+<img src="./assets_md/sistema.jpeg" alt="" title="Optional title">
 
 Com o host conectado no wi-fi, abra um terminal e digite o seguinte comando:
 

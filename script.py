@@ -10,6 +10,10 @@ def read_forms(body, word) :
 
     if not speedStr.isnumeric() :
         raise Exception("ERROR: BAD FORMAT")
+    elif int(speedStr) > 100 :
+        raise Exception("ERROR: BAD RANGE. MAX 100")
+    elif int(speedStr) < 0 :
+        raise Exception("ERROR: BAD RANGE. MIN 0")
     else :
         speedStr = int(speedStr)
 

@@ -1,8 +1,33 @@
 body {
-    background-color: lightblue;
+    background-image: url('./assets/blue_background.jpg');
+    /* background-repeat: no-repeat; */
+    background-size: cover;
 }
 
 h1 {
-    color: navy;
-    margin-left: 20px;
+    color: #f8f8f2;
+    position: relative;
+    font-family: monospace;
+}
+
+.header {
+    /* background-color: #f8f8f2; */
+    color: #f8f8f2;
+    position: relative;
+    font-family: monospace;
+    margin: auto;
+    width: 50%;
+    border: 3px solid purple;
+    padding: 10px;
+    text-align: center;
+}
+
+.gauge {
+    /* background-color: #f8f8f2; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    /* border: 3px solid purple; */
+    padding: 10px;
+    text-align: center;
 }
