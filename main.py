@@ -88,13 +88,10 @@ def main() :
     if not DBG :
         with open("/sys/class/pwm/pwmchip8/export", "w") as file1:
             file1.writelines([export])
-            
         with open("/sys/class/pwm/pwmchip8/pwm0/period", "w") as file2:
             file2.writelines([period])
-            
         with open("/sys/class/pwm/pwmchip8/pwm0/duty_cycle", "w") as file3:
             file3.writelines([duty_cycle])
-            
         with open("/sys/class/pwm/pwmchip8/pwm0/enable", "w") as file4:
             file4.writelines([enable])
 
