@@ -1,47 +1,16 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import traceback
+from script import *
 
 LAST_RPM = '0000'
 DBG = True
-
-def readForms(body, word) :
-    """Reads a attribute from a forms structured data"""
-    bd = body.decode('utf-8')
-    index = bd.find(word) + len(word) + 1
-    speedStr = bd[index:]
-    print('(' + speedStr + ')')
-
-    if not speedStr.isnumeric() :
-        raise Exception("ERROR: BAD FORMAT")
-    else :
-        speedStr = int(speedStr)
-
-    return str(speedStr)
-
-def writeDutyCycle(dutyCycle) :    
-    """Writes a value to Duty Cycle PWM control file"""
-    if DBG : dir = './duty_cycle'
-    else : dir = "/sys/class/pwm/pwmchip8/pwm0/duty_cycle"
-
-    with open(dir, 'w') as file:
-        duty_cycle = file.writelines([dutyCycle])
-
-    return
-
-def updateIndex(file, target, info) :
-    # Atualiza pagina
-    info = ' ' + info
-    aux = file.split(target)
-    aux.insert(1, target)
-    aux.insert(2, info)
-    return ''.join(aux)
 
 class Server(BaseHTTPRequestHandler):
     """Extends BaseHTTPRequestHandler class to create our own web server"""
 
     def do_GET(self):
         """GET HTML Method to load index.html file as default"""
-        if self.path == '/':
+        if self.path == '/' or self.path == '':
             self.path = '/index.html'
         try:
             index = open(self.path[1:]).read()
@@ -55,32 +24,31 @@ class Server(BaseHTTPRequestHandler):
     def do_POST(self):
         """POST HTML Method read and overwrite Duty Cycle PWM control file"""
 
-        global LAST_RPM
-        if self.path == '/':
+        global DBG, LAST_RPM
+        # Reads index.html file
+        if self.path == '/' or self.path == '':
             self.path = '/index.html'
+        # Successful load
         try:
             content_length = int(self.headers['Content-Length'])
             data = self.rfile.read(content_length)
             index = open(self.path[1:]).read()
             self.send_response(200)
+        # Error 404, file not found
         except:
             index = "File not found"
             self.send_response(404)
         self.end_headers()
         
+        # Executes post routine
         try :
-            speedInput = readForms(data, 'speed') 
-
-            writeDutyCycle(speedInput)
-
-            # Atualiza pagina            
-            index = updateIndex(index, 'Actual Speed:', speedInput)
-            self.wfile.write(bytes(index, 'utf-8'))
-            LAST_RPM = speedInput
+            index, LAST_RPM = post_response(data, index, DBG)
+        # If error in method, keep last valid speed
         except Exception as e :
             print(e)
-            index = updateIndex(index, 'Actual Speed:', LAST_RPM)
-            self.wfile.write(bytes(index, 'utf-8'))
+            index = update_index(index, 'Actual Speed:', LAST_RPM)
+
+        self.wfile.write(bytes(index, 'utf-8'))
 
 def main() :
 
