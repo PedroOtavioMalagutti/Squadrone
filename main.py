@@ -99,10 +99,13 @@ def main() :
             file4.writelines([enable])
 
     # Creates server
-    httpd = HTTPServer(('localhost', 8080), Server)
-    httpd.serve_forever()
+    if DBG :
+        httpd = HTTPServer(('localhost', 8080), Server)
+    else :
+        # TODO: EXTRACT OWN IP AUTOMATICALLY
+        httpd = HTTPServer(('192.168.0.196', 8080), Server)
 
-    print('mamaco')
+    httpd.serve_forever()
 
 if __name__ == '__main__' :
     main()
