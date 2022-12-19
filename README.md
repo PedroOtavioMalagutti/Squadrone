@@ -16,98 +16,60 @@ Desenvolvimento do controle de um motor de drone a partir de uma Colibri VF50, a
 
 Primeiramente é necessário conectar o sistema embarcado (target) e o computador de desenvolvimento (host) na mesma rede LAN, utilizando o protocolo ssh. Segue na imagem abaixo a montagem do sistema:
 
-# Squadrone
-
-Desenvolvimento do controle de um motor de drone a partir de uma Colibri VF50, através dos pinos de PWM disponíveis.
-
-## Materiais
-
-* Toradex Colibri VF50
-* Toradex Viola Carrier Board
-* Motor Brushless
-* ESC
-* Fonte 5V
-* Cabo Ethernet
-* Roteador Wi-fi
-
-## Montagem
-
-Primeiramente é necessário conectar o sistema embarcado (target) e o computador de desenvolvimento (host) na mesma rede LAN, utilizando o protocolo ssh. Segue na imagem abaixo a montagem do sistema:
+<img src="https://i.imgur.com/Uvr4Nv4.jpg=250x250" alt="drawing" width="300"/>
 
 Com o host conectado no wi-fi, abra um terminal e digite o seguinte comando:
 
 ``` ip -a  ```
+
 Busque pela interface wlp3s0
 
-Em seguida execute o comando 
+<img src="https://i.imgur.com/kv1xyzG.png" alt="drawing"/>
+
+Em seguida execute 
 
 ```sudo arp-scan --localhost --interface=wlp3s0```
 
-(Adicionar imagem do terminal)
+(imagem do terminal)
 
-Copie o IP indicado para a toradex e execute o comando
+Copie o IP obtido para a Toradex no campo indicado abaixo
 
 ```ssh root@<IP toradex>```
 
 Com isso, o terminal passa agora a operar no target
 
-(imagem do terminal)
+<img src="https://i.imgur.com/LBFAXkp.png" alt="drawing"/>
 
-# Squadrone
+# Instalação do python no Embarcado
 
-Desenvolvimento do controle de um motor de drone a partir de uma Colibri VF50, através dos pinos de PWM disponíveis.
+# Transferência dos arquivos para o Embarcado
 
-## Materiais
+Primeiramente, crie uma pasta referente ao projeto no target
 
-* Toradex Colibri VF50
-* Toradex Viola Carrier Board
-* Motor Brushless
-* ESC
-* Fonte 5V
-* Cabo Ethernet
-* Roteador Wi-fi
+```mkdir Squadrone```
 
-## Montagem
+Para executar o programa na placa, é necessário transferir os seguintes arquivos do repositório
 
-Primeiramente é necessário conectar o sistema embarcado (target) e o computador de desenvolvimento (host) na mesma rede LAN, utilizando o protocolo ssh. Segue na imagem abaixo a montagem do sistema:
+* main.py
+* script.py
+* index.html
+* index.js
+* style.css
+* assets
 
-<img src="./assets_md/sistema.jpeg" alt="" title="Optional title">
+Para tanto basta executar no terminal do host
 
-Com o host conectado no wi-fi, abra um terminal e digite o seguinte comando:
+```scp <nome dos arquivos> root@<IP toradex>:/root/Squadrone```
 
-``` ip -a  ```
-Busque pela interface wlp3s0
+(Verificar se é possível enviar todos de uma vez)
 
-Em seguida execute o comando 
 
-```sudo arp-scan --localhost --interface=wlp3s0```
+## Executando o programa
 
-(Adicionar imagem do terminal)
+No terminal do target, execute o arquivo main.py
 
-Copie o IP indicado para a toradex e execute o comando
+```python3 main.py```
 
-```ssh root@<IP toradex>```
+No terminal do host, abra o navegador e digite
 
-Com isso, o terminal passa agora a operar no target
-
-(imagem do terminal)
-
-Com o host conectado no wi-fi, abra um terminal e digite o seguinte comando:
-
-``` ip -a  ```
-Busque pela interface wlp3s0
-
-Em seguida execute o comando 
-
-```sudo arp-scan --localhost --interface=wlp3s0```
-
-(Adicionar imagem do terminal)
-
-Copie o IP indicado para a toradex e execute o comando
-
-```ssh root@<IP toradex>```
-
-Com isso, o terminal passa agora a operar no target
-
-(imagem do terminal)
-
+```<IP toradex>:8080/index.html```
