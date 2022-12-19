@@ -4,81 +4,76 @@
 <head>
   <meta charset="utf-8">
   <title>Squadrone BLDC Controller</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- <script src="https://d3js.org/d3.v6.min.js"></script> -->
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/slider.css">
+  <!-- <link rel="stylesheet" href="./css/knob.css"> -->
   <script src="./gauge.min.js"></script>
   <script src="./index.js"></script>
 </head>
 
 <body>
-  <div class="header">
+  <center>   
+  <br /><br />
+  <div id="header">
     <h1>Squadrone BLDC Controller</h1>
   </div>
+  <br /><br />
 
   <div class="gauge-div">
     <canvas id="gauge" class="gauge1" height="300px" width="500px">
   </div>
-
-  <!-- <div class="speed">    
-    <form method="post">
-      <fieldset class="config field1"">
-        <h2>Speed Control</h2>
-        <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />
-        <button type="submit">Submit</button>
-      </fieldset>
-    </form>
-  </div> -->
-
-  <div class="slider">
+  <!-- <div class="slider">
     <div class="knob"></div>
-  </div>
+  </div> -->
+    
+  <form method="post">
+    <fieldset>
+      <legend>Speed Control</legend>
+      <div class="box">
+        <div class="slider">
+          <input type="range" name="speed" min="0" max="100" value="">
+        </div>
+        <div class="value">%</div>
+      </div>
+      <br />
+      <!-- <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />           -->
+      <button type="submit">Submit</button>
+    </fieldset>          
+  </form>
+  
+  <br /><br />
+  <h1>Speed: <p></p> RPM</h1>      
+  <br /><br />
 
-  <div class="config field1">    
-    <form method="post">
-        <h2>Motor configuration</h2>
-        <input type="text" name="kv" placeholder="Velocity constant KV ()"><br /><br />
-        <button type="submit">Submit</button>
-    </form>
-  </div>
-
-  <center>
+  <form method="post">
+  <table>
+    <thead>
+      <tr><th class="tb">Configuration</th>
+        <th class="tb">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="tb">Kv</td>
+        <td class="tb"><input type="telnum" name="kv" placeholder=""></td></tr>
+        <tr><td class="tb">Voltage</td>
+        <td class="tb"><input type="telnum" name="voltage" placeholder=""></td></tr>
+      </tbody>
+    </table><br>
+    <button type="submit" style="width: 30%">Submit configurations</button>
+  </form>
         
-    <form method="post">
-      <fieldset>
-        <legend>Speed Control</legend>
-        <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />          
-        <button type="submit">Submit</button>
-        
-      </fieldset>          
-      <center>
-        <h1>
-          Speed: <br />
-        </h1>      
-        <table>
-          <thead>
-            <tr>
-              <th class="tb">Configuration</th>
-              <th class="tb">Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="tb">Kv</td>
-              <td class="tb"><input type="telnum" name="kv"></td>
-            </tr>
-            <tr>
-              <td class="tb">Tensão</td>
-              <td class="tb"><input type="telnum" name="Tensao"></td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-        <button type="submit" style="width: 40%">Submit configurations</button>
-      </form>
-
   <script>
     gauge = setGauge()
-    updateGauge(gauge)
+    updateGauge(gauge, 000)
+    const slider = document.querySelector("input");
+    const value = document.querySelector(".value");
+    value.textContent = slider.value + "%";
+    slider.oninput = function(){
+      value.textContent = this.value + "%";
+      updateGauge(gauge, this.value*500)
+      spd = this.value;
+    }
   </script>
+
+  </center>
 </body>
 </html>

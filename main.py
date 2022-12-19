@@ -4,10 +4,48 @@ from script import *
 import sys
 import signal
 
-LAST_RPM = '0000'
+LAST_SPD = '0'
+LAST_KV = '0'
+LAST_VOLTAGE = '0'
 DBG = True
 
-# Our signal handler
+def post_response(data, index) :
+    """Main function called method of do_POST server class method"""
+    global DBG, LAST_SPD, LAST_KV, LAST_VOLTAGE
+    speed_input = read_forms(data, 'speed') 
+    kv_input = read_forms(data, 'kv')
+    voltage_input = read_forms(data, 'voltage')   
+    # Check all variables
+    if speed_input == '' or speed_input == 'not found' :
+        speed_input = LAST_SPD
+    else : LAST_SPD = speed_input
+    if kv_input == '' or kv_input == 'not found' :
+        kv_input = LAST_KV
+    else : LAST_KV = kv_input
+    if voltage_input == '' or voltage_input == 'not found' :
+        voltage_input = LAST_VOLTAGE
+    else : LAST_VOLTAGE = voltage_input
+    
+    # Controls motor speed
+    write_duty_cycle(speed_input, DBG)
+
+    ## HTML UPDATE SECTION
+    # SPEED RPM 
+    index = update_index(index, 'Speed: ', int(speed_input)*int(kv_input)*int(voltage_input))
+    # RANGE SLIDER % LABEL
+    index = update_index(index, '<div class="value">', speed_input)
+    # RANGE SLIDER 
+    index = update_index(index, 'value=\"', speed_input)
+    # KV PLACEHOLDER
+    index = update_index(index, 'name="kv" placeholder=\"', kv_input)
+    # VOLTAGE PLACEHOLDER
+    index = update_index(index, 'name="voltage" placeholder=\"', voltage_input)
+    # VELOCIMETER LEVEL
+    index = update_index(index, '000', int(speed_input)*500)
+        
+    # Then returns the modified webpage
+    return index
+
 def signal_handler(signum, frame):  
     """Handles SIGNAL CTRL+C to stop PWM service correctly"""
     print('Closing server...')
@@ -38,7 +76,6 @@ class Server(BaseHTTPRequestHandler):
 
     def do_POST(self):
         """POST HTML Method read and overwrite Duty Cycle PWM control file"""
-        global DBG, LAST_RPM
         # Reads index.html file
         if self.path == '/' or self.path == '':
             self.path = '/index.html'
@@ -55,13 +92,9 @@ class Server(BaseHTTPRequestHandler):
         self.end_headers()
         
         # Executes post routine
-        try :
-            index, LAST_RPM = post_response(data, index, DBG)
-        # If error in method, keep last valid speed
-        except Exception as e :
-            print(e)
-            index = update_index(index, 'Speed: ', LAST_RPM)
+        index = post_response(data, index)
 
+        # Sends a updated index page
         self.wfile.write(bytes(index, 'utf-8'))
 
 def main() :
@@ -105,6 +138,7 @@ def main() :
     else :
         # TODO: EXTRACT OWN IP AUTOMATICALLY
         httpd = HTTPServer(('192.168.0.196', 8080), Server)
+        print("Server started at http://192.168.0.196:8080")
 
     httpd.serve_forever()
 
