@@ -73,14 +73,9 @@ Para tanto basta executar no terminal do host
 
 ## Montagem da ESC + Motor
 
-Conecte corretamente os terminais da ESC no motor (atente-se às especificações do seu equipamento) e alimente a ESC
+Conecte corretamente os terminais da ESC no motor (atente-se às especificações do seu equipamento) e alimente a ESC. Então resta conectar a porta que fará o controle da velocidade, a PWM que, para o este projeto, foi desenvolvida no pino 42 da placa Viola Carrier Board
 
-(Imagem da ESC+motor montada)
-
-Com a ESC devidamente alimentada, resta conectar a porta que fará o controle da velocidade, a PWM que, para o este projeto, foi desenvolvida no pino 42 da placa Viola Carrier Board
-
-(Imagem da ESC conectada na placa)
-
+<img src="https://i.imgur.com/ppkXWCl.png" alt="drawing" width="300"/>
 
 ## Executando o programa
 
@@ -96,6 +91,6 @@ Role a página aberta e preencha os campos indicados da tabela com os respectivo
 
 <img src="https://i.imgur.com/1N7IhQv.png" alt="drawing"/>
 
-Por fim, para controlar a velocidade, basta arrastar o slider para a velocidade desejada e pressionar o botão submit para alterar a velocidade do motor.
+Por fim, para controlar a velocidade, basta arrastar o slider para o percentual desejado e pressionar o botão submit.
 
 <img src="https://i.imgur.com/tRKFJIx.png" alt="drawing"/>
