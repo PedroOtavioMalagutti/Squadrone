@@ -27,12 +27,12 @@ def post_response(data, index) :
     else : LAST_VOLTAGE = voltage_input
     
     # Controls motor speed
-    duty_cycle = int(speed_input)/100 * 10e6 + 10e6
+    duty_cycle = int(speed_input)/100 * 1e6 + 1e6
     write_duty_cycle(str(int(duty_cycle)), DBG)
 
     ## HTML UPDATE SECTION
     # SPEED RPM 
-    index = update_index(index, 'Speed: ', int(speed_input)*int(kv_input)*int(voltage_input))
+    index = update_index(index, 'Speed: ', int(speed_input)/100*float(kv_input)*float(voltage_input))
     # RANGE SLIDER % LABEL
     index = update_index(index, '<div class="value">', speed_input)
     # RANGE SLIDER 
