@@ -42,6 +42,14 @@ Com isso, o terminal passa agora a operar no target
 
 # Instalação do python no Embarcado
 
+Dentro do terminal da VF50, basta utilizar o comando opkg para instalar o interpretador do python e seus pacotes padrões. Antes de usar certifique que o mesmo enontra-se atualizado.
+
+```opkg update```
+
+
+```opkg install python3```
+
+
 # Transferência dos arquivos para o Embarcado
 
 Primeiramente, crie uma pasta referente ao projeto no target
@@ -63,6 +71,16 @@ Para tanto basta executar no terminal do host
 
 (Verificar se é possível enviar todos de uma vez)
 
+## Montagem da ESC + Motor
+
+Conecte corretamente os terminais da ESC no motor (atente-se às especificações do seu equipamento) e alimente a ESC
+
+(Imagem da ESC+motor montada)
+
+Com a ESC devidamente alimentada, resta conectar a porta que fará o controle da velocidade, a PWM que, para o este projeto, foi desenvolvida no pino 42 da placa Viola Carrier Board
+
+(Imagem da ESC conectada na placa)
+
 
 ## Executando o programa
 
@@ -73,3 +91,11 @@ No terminal do target, execute o arquivo main.py
 No terminal do host, abra o navegador e digite
 
 ```<IP toradex>:8080/index.html```
+
+Role a página aberta e preencha os campos indicados da tabela com os respectivos valores de Kv e Tensão de bateria de acordo com o equipamento utilizado. Pressione o botão submit configurations ao final.
+
+<img src="https://i.imgur.com/1N7IhQv.png" alt="drawing"/>
+
+Por fim, para controlar a velocidade, basta arrastar o slider para a velocidade desejada e pressionar o botão submit para alterar a velocidade do motor.
+
+<img src="https://i.imgur.com/tRKFJIx.png" alt="drawing"/>
