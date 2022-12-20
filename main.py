@@ -27,7 +27,8 @@ def post_response(data, index) :
     else : LAST_VOLTAGE = voltage_input
     
     # Controls motor speed
-    write_duty_cycle(speed_input, DBG)
+    duty_cycle = int(speed_input)/100 * 10e6 + 10e6
+    write_duty_cycle(str(int(duty_cycle)), DBG)
 
     ## HTML UPDATE SECTION
     # SPEED RPM 
@@ -41,7 +42,7 @@ def post_response(data, index) :
     # VOLTAGE PLACEHOLDER
     index = update_index(index, 'name="voltage" placeholder=\"', voltage_input)
     # VELOCIMETER LEVEL
-    index = update_index(index, '000', int(speed_input)*500)
+    index = update_index(index, '000', int(speed_input))
         
     # Then returns the modified webpage
     return index
@@ -60,6 +61,7 @@ class Server(BaseHTTPRequestHandler):
 
     def do_GET(self):
         """GET HTML Method to load index.html file as default"""
+        global LAST_SPD
         # Reads index.html file
         if self.path == '/' or self.path == '':
             self.path = '/index.html'
@@ -72,6 +74,7 @@ class Server(BaseHTTPRequestHandler):
             index = "File not found"
             self.send_response(404)
         self.end_headers()
+        # VELOCIMETER LEVEL
         self.wfile.write(bytes(index, 'utf-8'))
 
     def do_POST(self):
@@ -98,9 +101,7 @@ class Server(BaseHTTPRequestHandler):
         self.wfile.write(bytes(index, 'utf-8'))
 
 def main() :
-
     global DBG
-
     # Register `SIGINT`handler (CTRL + C)
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -114,11 +115,11 @@ def main() :
 
     # Setup values of PWM
     export = "0"
-    period = "2000"
-    duty_cycle = "0000"
+    period = "2000000"
+    duty_cycle = "1000000"
     enable = "1"
 
-    print(f"Starting Squadrone: export = {export}, period = {period}, duty_cycle = {duty_cycle}, enable = {enable}, debug = {DBG}")
+    print(f"Starting Squadrone \n export = {export}, period = {period}, duty_cycle = {duty_cycle}, enable = {enable}, debug = {DBG}")
 
     # Starts PWM Service
     if not DBG:
