@@ -48,10 +48,10 @@ def post_response(data, index):
     duty_cycle = int(speed_input)/100 * 1e6 + 1e6
     write_duty_cycle(str(int(duty_cycle)), DBG)
 
-    # HTML UPDATE SECTION
-    # SPEED RPM
-    index = update_index(index, 'Speed: ', int(
-        speed_input)/100*float(kv_input)*float(voltage_input))
+    ## HTML UPDATE SECTION
+    # SPEED RPM 
+    speed = int(speed_input)*float(kv_input)*float(voltage_input)
+    index = update_index(index, 'Speed: ', round(speed, 2))
     # RANGE SLIDER % LABEL
     index = update_index(index, '<div class="value">', speed_input)
     # RANGE SLIDER
