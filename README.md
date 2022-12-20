@@ -77,7 +77,6 @@ Para tanto basta executar no terminal do host
 
 ```scp <nome dos arquivos> root@<IP toradex>:/root/Squadrone```
 
-(Verificar se é possível enviar todos de uma vez)
 
 ## Montagem da ESC + Motor
 
