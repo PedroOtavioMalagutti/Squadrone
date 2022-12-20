@@ -1,5 +1,12 @@
 # Squadrone
+## Membros
+* Caio Brandolim Rovetta
+* Calvin Suzuki de Camargo 
+* Guilherme Soares Silvestre
+* Pedro Otavio Malagutti
+* Kiyoshi Araki Frade
 
+## Objetivo
 Desenvolvimento do controle de um motor de drone a partir de uma Colibri VF50, através dos pinos de PWM disponíveis.
 
 ## Materiais
