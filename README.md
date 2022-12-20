@@ -42,6 +42,14 @@ Com isso, o terminal passa agora a operar no target
 
 # Instalação do python no Embarcado
 
+Dentro do terminal da VF50, basta utilizar o comando opkg para instalar o interpretador do python e seus pacotes padrões. Antes de usar certifique que o mesmo enontra-se atualizado.
+
+```opkg update```
+
+
+```opkg install python3```
+
+
 # Transferência dos arquivos para o Embarcado
 
 Primeiramente, crie uma pasta referente ao projeto no target
