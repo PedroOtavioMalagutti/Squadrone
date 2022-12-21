@@ -6,7 +6,6 @@
 * Kiyoshi Araki Frade
 * Pedro Otavio Malagutti
 
-
 ## Objetivo
 Desenvolvimento do controle de um motor de drone a partir de uma Colibri VF50, através dos pinos de PWM disponíveis.
 
@@ -94,10 +93,10 @@ No terminal do host, abra o navegador e digite
 
 ```<IP toradex>:8080/index.html```
 
-Role a página aberta e preencha os campos indicados da tabela com os respectivos valores de Kv e Tensão de bateria de acordo com o equipamento utilizado. Pressione o botão submit configurations ao final.
+Preencha os campos indicados da tabela com os respectivos valores de Kv e Tensão de bateria de acordo com o equipamento utilizado. Pressione o botão submit configurations ao final.
 
-<img src="https://i.imgur.com/1N7IhQv.png" alt="drawing"/>
+<img src="https://i.imgur.com/aQahOpF.gif" alt="drawing"/>
 
 Por fim, para controlar a velocidade, basta arrastar o slider para o percentual desejado e pressionar o botão submit.
 
-<img src="https://i.imgur.com/tRKFJIx.png" alt="drawing"/>
+<img src="https://i.imgur.com/s0B86Pf.gif" alt="drawing"/>
