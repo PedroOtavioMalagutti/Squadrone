@@ -1,3 +1,11 @@
+/*
+
+Created on
+
+author: Pedro Otávio Malagutti
+
+*/
+
 #include <stdio.h>
 #include <unistd.h>
 
