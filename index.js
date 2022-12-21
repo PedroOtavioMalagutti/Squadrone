@@ -1,3 +1,8 @@
+// index.js - Gauge configuration script
+// 
+// Author: Calvin Suzuki and Guilherme Soares
+// 
+// This script configures animations and site's behavior to user interaction.
 var opts = {
     angle: -0.07, // The span of the gauge arc
     lineWidth: 0.43, // The line thickness

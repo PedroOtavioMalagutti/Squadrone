@@ -1,3 +1,14 @@
+# main.py - HTTP.Server program
+# 
+# Author: Calvin Suzuki, Kiyoshi Araki, Guilherme Soares
+# 
+# This script creates a web server based on a class extension from BaseHTTPRequestHandler.
+# It handles two default methods from HTTP:
+# GET - Action of requesting a page from server
+# POST - Action of sending a message and receive server's response
+#
+# With DEBUG MODE active, the script is able to run on machines other than Toradex/Colibri
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import traceback
 from script import *
@@ -16,13 +27,13 @@ def post_response(data, index) :
     kv_input = read_forms(data, 'kv')
     voltage_input = read_forms(data, 'voltage')   
     # Check all variables
-    if speed_input == '' or speed_input == 'not found' :
+    if speed_input == 'empty' or speed_input == 'not found' :
         speed_input = LAST_SPD
     else : LAST_SPD = speed_input
-    if kv_input == '' or kv_input == 'not found' :
+    if kv_input == 'empty' or kv_input == 'not found' :
         kv_input = LAST_KV
     else : LAST_KV = kv_input
-    if voltage_input == '' or voltage_input == 'not found' :
+    if voltage_input == 'empty' or voltage_input == 'not found' :
         voltage_input = LAST_VOLTAGE
     else : LAST_VOLTAGE = voltage_input
     

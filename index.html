@@ -1,3 +1,11 @@
+<!-- 
+index.html - Project web page
+
+Author: Calvin Suzuki and Guilherme Soares
+
+This HTML is the main website structure. It tells how and where
+each element is placed to create our front-end.
+-->
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +22,7 @@
 <body>
   <center>   
 
-  <br /><br />
+  <br />
 
   <div id="header">
     <h1>Squadrone BLDC Controller</h1>
@@ -22,56 +30,72 @@
   
   <br /><br />
 
-  <div class="gauge-div">
-    <canvas id="gauge" class="gauge1" height="300px" width="500px">
-  </div>
-  <!-- <div class="slider">
-    <div class="knob"></div>
-  </div> -->
-    
-  <form method="post">
-    <fieldset>
-      <legend>Speed Control</legend>
-      <div class="box">
-        <div class="slider">
-          <input type="range" name="speed" min="0" max="100" value="">
-        </div>
-        <div class="value">%</div>
-      </div>
-      <br />
-      <!-- <input type="text" name="speed" placeholder="Speed in RPM"><br /><br />           -->
-      <button type="submit">Submit</button>
-    </fieldset>          
-  </form>
-  
-  <br /><br />
-  <h1>Speed: RPM</h1>      
-  <br /><br />
+  <div class="container">
 
-  <form method="post">
-  <table>
-    <thead>
-      <tr><th class="tb">Configuration</th>
-        <th class="tb">Value</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="tb">Kv</td>
-        <td class="tb"><input type="telnum" name="kv" placeholder=""></td></tr>
-        <tr><td class="tb">Voltage</td>
-        <td class="tb"><input type="telnum" name="voltage" placeholder=""></td></tr>
-      </tbody>
-    </table><br>
-    <button type="submit" style="width: 30%">Submit configurations</button>
-  </form>
+    <div id="velocimeter" >
+      <div class="gauge-div">
+          <canvas id="gauge" class="gauge1" height="300px" width="500px">
+      </div>
+    </div>
+
+    <div id="control">
+      <form method="post">
+        <fieldset>
+          <legend>Speed Control</legend>
+          <div class="box">
+            <div class="slider">
+              <input type="range" name="speed" min="0" max="100" value="">
+            </div>
+            <div class="value">%</div>
+          </div>
+          <br />
+          <button type="submit">Submit</button>
+        </fieldset>          
+      </form>
+    </div>
+    
+    <div id="meter" >
+      <h1 id="rpm">Speed: RPM</h1>      
+    </div>
+
+    <div id="params" >
+      <form method="post">
+        <table class="data">
+          <tr>
+            <th>KV</th>
+            <th>Voltage</th>
+          </tr>
+          <tr>
+            <td><input id="KV" type="telnum" name="kv" placeholder=""></td>
+            <td><input id="Voltage" type="telnum" name="voltage" placeholder=""></td>
+          </tr>
+          <tr>
+            <td colspan="2"><button type="submit">Submit configurations</button></td>
+          </tr>
+        </table>
+        <br>
         
+      </form>
+    </div>
+        
+  </div>
   <script>
     gauge = setGauge()
-    updateGauge(gauge, 000)
+    updateGauge(gauge, parseInt("000"))
     const slider = document.querySelector("input");
     const value = document.querySelector(".value");
-    value.textContent = slider.value + "%";
-    slider.oninput = function(){
-      value.textContent = this.value + "%";
+    const speed = document.getElementById('rpm');
+
+    var kv = document.getElementById('KV').placeholder;
+    var voltage = document.getElementById('Voltage').placeholder;
+    var rpm = slider.value/100 * parseInt(kv) * parseInt(voltage);
+
+    value.innerHTML = slider.value + "%";
+    speed.innerHTML = "Speed:\t" + Math.round(rpm) + "RPM";
+    slider.oninput = function() {
+      var rpm = slider.value/100 * parseInt(kv) * parseInt(voltage);
+      value.innerHTML = this.value + "%";
+      speed.innerHTML = "Speed:\t" + Math.round(rpm) + "RPM";
       updateGauge(gauge, this.value);
       spd = this.value;
     }

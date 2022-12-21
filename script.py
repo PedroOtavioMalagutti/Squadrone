@@ -1,3 +1,8 @@
+# script.py - main.py modularization
+# 
+# Author: Calvin Suzuki
+# 
+# This file holds functions called in 'post_response' method in main.py file.
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import traceback
 
