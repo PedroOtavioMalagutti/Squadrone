@@ -83,6 +83,8 @@ Conecte corretamente os terminais da ESC no motor (atente-se às especificaçõe
 
 <img src="https://i.imgur.com/ppkXWCl.png" alt="drawing" width="300"/>
 
+<img src="https://i.imgur.com/WXrWl84.png" alt="drawing"/>
+
 ## Executando o programa
 
 No terminal do target, execute o arquivo main.py
@@ -100,3 +102,21 @@ Preencha os campos indicados da tabela com os respectivos valores de Kv e Tensã
 Por fim, para controlar a velocidade, basta arrastar o slider para o percentual desejado e pressionar o botão submit.
 
 <img src="https://i.imgur.com/s0B86Pf.gif" alt="drawing"/>
+
+## Considerações Finais
+
+### Front-end
+
+Dentre as opções disponíveis, estavam o software de desenvolvimento QT-Creator e a aplicação web.
+
+Vantagens do web sobre o QT:
+
+* Biblioteca mais atualizada
+* Escalabilidade
+* Interface gráfica é processada no Client
+
+Obs: A versão do QT-creator compatível com a Colibri VF50 era muito antigo, gerando dificuldades para encontrá-lo e instalar no embarcado.
+
+### Back-end
+
+Com a escolha da aplicação web para o Front-end, o python foi selecionado com o intuito de simplificar a hospedagem do web-server, devido ao fato de possuir a biblioteca *http.server* que auxilia nessa tarefa.
