@@ -1,3 +1,8 @@
+"""
+Created on 
+
+@author: Pedro Otavio Malagutti
+"""
 # Python program to write files
 import time 
 
