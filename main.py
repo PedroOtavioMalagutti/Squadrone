@@ -1,3 +1,7 @@
+"""
+Created on 
+@author: Guilherme Soares Silvestre and Calvin Suzuki de Camargo
+"""
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import traceback
 from script import *
