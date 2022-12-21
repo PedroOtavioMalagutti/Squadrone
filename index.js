@@ -1,3 +1,8 @@
+/*
+Created on 
+
+@author: Calvin Suzuki de Camargo and Guilherme Soares Silvestre
+*/
 var opts = {
     angle: -0.07, // The span of the gauge arc
     lineWidth: 0.43, // The line thickness
