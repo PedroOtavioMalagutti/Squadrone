@@ -1,7 +1,7 @@
 """
 Created on 
 
-@author: Pedro Otavio Malagutti
+@author: Kiyoshi Frade Araki
 """
 # Python program to write files
 import time 
