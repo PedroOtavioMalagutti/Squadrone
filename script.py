@@ -1,3 +1,8 @@
+"""
+Created on 
+
+@author: Calvin Suzuki de Camargo,Guilherme Soares Silvestre and Pedro Otavio Malagutti
+"""
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import traceback
 
